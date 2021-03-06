@@ -1,0 +1,2 @@
+# recedo
+Receipt app
