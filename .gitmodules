@@ -1,0 +1,9 @@
+[submodule "recedo-models"]
+	path = recedo-models
+	url = https://github.com/isamu-isozaki/recedo-models.git
+[submodule "recedo-backend"]
+	path = recedo-backend
+	url = https://github.com/isamu-isozaki/recedo-backend.git
+[submodule "recedo-frontend"]
+	path = recedo-frontend
+	url = https://github.com/isamu-isozaki/recedo-frontend.git
