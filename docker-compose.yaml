@@ -1,32 +1,32 @@
 version: '3'
 
 services:
-  # backend:
-  #   build: ./recedo-backend
-  #   restart: unless-stopped
-  #   environment:
-  #     APP_PORT: 5000
-  #     DB_URI: "mongodb://db:27017/recedo"
-  #     DB_USER: "test"
-  #     DB_PASSWORD: "testpassword"
-  #     GOOGLE_APPLICATION_CREDENTIALS: "google-credentials.json"
-  #     API_URL: "http://localhost:5010"
-  #   volumes:
-  #     - ./recedo-backend:/app
-  #   ports:
-  #     - 5000:5000
-  #   command: npm run dev
-  # frontend:
-  #   build: ./recedo-frontend
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./recedo-frontend:/app
-  #   ports:
-  #     - 5010:5010
-  #   env_file:
-  #     - recedo-frontend/.env
-  #   environment:
-  #     PORT: 5010
+  backend:
+    build: ./recedo-backend
+    restart: unless-stopped
+    environment:
+      APP_PORT: 5000
+      DB_URI: "mongodb://db:27017/recedo"
+      DB_USER: "test"
+      DB_PASSWORD: "testpassword"
+      GOOGLE_APPLICATION_CREDENTIALS: "google-credentials.json"
+      API_URL: "http://localhost:5010"
+    volumes:
+      - ./recedo-backend:/app
+    ports:
+      - 5000:5000
+    command: npm start
+  frontend:
+    build: ./recedo-frontend
+    restart: unless-stopped
+    volumes:
+      - ./recedo-frontend:/app
+    ports:
+      - 5010:80
+    env_file:
+      - recedo-frontend/.env
+    environment:
+      PORT: 5010
   db:
     image: mongo:latest
     environment:
