@@ -4,38 +4,35 @@ services:
   backend:
     build: ./recedo-backend
     restart: unless-stopped
-    environment:
-      APP_PORT: 5000
-      DB_URI: "mongodb://db:27017/recedo"
-      DB_USER: "test"
-      DB_PASSWORD: "testpassword"
-      GOOGLE_APPLICATION_CREDENTIALS: "google-credentials.json"
-      API_URL: "http://localhost:5010"
+    mem_limit: '64M'
+    cpus: 0.25
     volumes:
       - ./recedo-backend:/app
     ports:
-      - 5000:5000
+      - 10000:10000
     command: npm start
   frontend:
     build: ./recedo-frontend
     restart: unless-stopped
+    mem_limit: '64M'
+    cpus: 0.25
     volumes:
       - ./recedo-frontend:/app
     ports:
-      - 5010:80
+      - 10010:80
     env_file:
       - recedo-frontend/.env
     environment:
-      PORT: 5010
-  db:
-    image: mongo:latest
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
-      MONGO_INITDB_DATABASE: recedo
-    ports:
-      - 27017:27017
-    volumes:
-      - ./mongodb:/data/db
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      PORT: 10010
+  # db:
+  #   image: mongo:latest
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: rootpassword
+  #     MONGO_INITDB_DATABASE: recedo
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./mongodb:/data/db
+  #     - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       
